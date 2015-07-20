@@ -6,6 +6,8 @@ public class GameCotroller : MonoBehaviour {
 	public PlayerController player1;
 	public PlayerController player2;
 
+	public Transform beatPrefab;
+
 	// time between beats
 	public float beat = 1;
 	// time after the sweetspot until
@@ -24,6 +26,9 @@ public class GameCotroller : MonoBehaviour {
 	}
 
 	void pullMoves() {
+
+		Instantiate(beatPrefab,new Vector3(-3F,-4F,-1F), Quaternion.identity);
+
 		MoveSelection move1 = player1.getSelectedMove ();
 		if (move1 != null) {
 			float beatTime = Time.time - offset;
