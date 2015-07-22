@@ -6,6 +6,16 @@ public class GameCotroller : MonoBehaviour {
 	public PlayerController player1;
 	public PlayerController player2;
 
+	public Sprite rockSprite;
+	public Sprite paperSprite;
+	public Sprite scissorSprite;
+
+	public Transform player1ingame;
+	public Transform player2ingame;
+
+	public Transform player1currentmove;
+	public Transform player2currentmove;
+
 	public Transform beatPrefab;
 
 	// time between beats
@@ -37,5 +47,9 @@ public class GameCotroller : MonoBehaviour {
 		} else {
 			Debug.Log ("skipped beat");
 		}
+		if(move1.move == Move.ROCK){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
+		if(move1.move == Move.PAPER){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
+		if(move1.move == Move.SCISSOR){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
+
 	}
 }
