@@ -13,8 +13,6 @@ public class GameCotroller : MonoBehaviour {
 	public Transform player1ingame;
 	public Transform player2ingame;
 
-	public Transform player1currentmove;
-	public Transform player2currentmove;
 
 	public Transform beatPrefab;
 
@@ -37,7 +35,7 @@ public class GameCotroller : MonoBehaviour {
 
 	void pullMoves() {
 
-		Instantiate(beatPrefab,new Vector3(-3F,-4F,-1F), Quaternion.identity);
+		Instantiate(beatPrefab,new Vector3(0F,-4F,-1F), Quaternion.identity);
 
 		MoveSelection move1 = player1.getSelectedMove ();
 		if (move1 != null) {
@@ -50,6 +48,21 @@ public class GameCotroller : MonoBehaviour {
 		if(move1.move == Move.ROCK){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
 		if(move1.move == Move.PAPER){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
 		if(move1.move == Move.SCISSOR){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
+
+
+		MoveSelection move2 = player2.getSelectedMove ();
+		if (move2 != null) {
+			float beatTime = Time.time - offset;
+			float timeDifferenz = move2.timing - beatTime;
+			Debug.Log (move2.move + " " + timeDifferenz);
+		} else {
+			Debug.Log ("skipped beat");
+		}
+		if(move2.move == Move.ROCK){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
+		if(move2.move == Move.PAPER){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
+		if(move2.move == Move.SCISSOR){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
+
+
 
 	}
 }

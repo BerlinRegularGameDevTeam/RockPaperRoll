@@ -3,8 +3,7 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
-	public Transform player1currentmove;
-	public Transform player2currentmove;
+	public Transform playercurrentmove;
 
 	public Sprite rockSprite;
 	public Sprite paperSprite;
@@ -27,9 +26,9 @@ public class PlayerController : MonoBehaviour {
 			selectedMove = new MoveSelection(move, Time.time);
 			Debug.Log ("selected : " + move);
 
-			if(selectedMove.move == Move.ROCK){player1currentmove.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
-			if(selectedMove.move == Move.PAPER){player1currentmove.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
-			if(selectedMove.move == Move.SCISSOR){player1currentmove.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
+			if(selectedMove.move == Move.ROCK){playercurrentmove.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
+			if(selectedMove.move == Move.PAPER){playercurrentmove.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
+			if(selectedMove.move == Move.SCISSOR){playercurrentmove.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
 
 
 		}
