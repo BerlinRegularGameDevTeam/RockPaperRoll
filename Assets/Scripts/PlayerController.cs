@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public MoveSelection getSelectedMove() {
+
 		MoveSelection result = selectedMove;
+
 		selectedMove = null;
 		return result;
 	}
