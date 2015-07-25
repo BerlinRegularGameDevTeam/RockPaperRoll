@@ -14,6 +14,7 @@ public class GameCotroller : MonoBehaviour {
 	public Transform player1ingame;
 	public Transform player2ingame;
 
+	public int evaluatedResult;
 
 	public Transform beatPrefab;
 
@@ -33,7 +34,7 @@ public class GameCotroller : MonoBehaviour {
 	void Update () {
 	
 	}
-
+	
 	void pullMoves() {
 
 		Instantiate(beatPrefab,new Vector3(0F,-4F,-1F), Quaternion.identity);
@@ -41,7 +42,7 @@ public class GameCotroller : MonoBehaviour {
 
 
 		MoveSelection move1 = player1.getSelectedMove ();
-		if (move1 != null) {
+		if (move1.move != Move.NONE) {
 			float beatTime = Time.time - offset;
 			float timeDifferenz = move1.timing - beatTime;
 			Debug.Log ("Player 1: " + move1.move + " " + timeDifferenz);
@@ -49,6 +50,7 @@ public class GameCotroller : MonoBehaviour {
 			if(move1.move == Move.PAPER){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
 			if(move1.move == Move.SCISSOR){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
 		} else {
+	
 			Debug.Log ("Player 1: skipped beat");
 			player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=blankSprite;
 
@@ -56,7 +58,7 @@ public class GameCotroller : MonoBehaviour {
 
 
 		MoveSelection move2 = player2.getSelectedMove ();
-		if (move2 != null) 
+		if (move2.move != Move.NONE) 
 		{ 
 			float beatTime = Time.time - offset;
 			float timeDifferenz = move2.timing - beatTime;
@@ -72,6 +74,49 @@ public class GameCotroller : MonoBehaviour {
 			player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=blankSprite;
 				}
 
+
+		//evaluate
+		//quick and dirty~
+		if(move1.move == Move.ROCK)
+		{
+			if(move2.move == Move.ROCK){evaluatedResult = 0;} 
+			if(move2.move == Move.PAPER){evaluatedResult = -1;} 
+			if(move2.move == Move.SCISSOR){evaluatedResult = 1;} 
+			if(move2.move == Move.NONE){evaluatedResult = 1;} 
+		}
+
+		if(move1.move == Move.PAPER)
+		{
+			if(move2.move == Move.ROCK){evaluatedResult = 1;} 
+			if(move2.move == Move.PAPER){evaluatedResult = 0;} 
+			if(move2.move == Move.SCISSOR){evaluatedResult = -1;} 
+			if(move2.move == Move.NONE){evaluatedResult = 1;} 
+			
+			
+		}
+
+		if(move1.move == Move.SCISSOR)
+		{
+			if(move2.move == Move.ROCK){evaluatedResult = -1;} 
+			if(move2.move == Move.PAPER){evaluatedResult = 1;} 
+			if(move2.move == Move.SCISSOR){evaluatedResult = 0;} 
+			if(move2.move == Move.NONE){evaluatedResult = 1;} 
+			
+			
+		}
+
+
+		if(move1.move == Move.NONE)
+		{
+			if(move2.move == Move.ROCK){evaluatedResult = -1;} 
+			if(move2.move == Move.PAPER){evaluatedResult = -1;} 
+			if(move2.move == Move.SCISSOR){evaluatedResult = -1;} 
+			if(move2.move == Move.NONE){evaluatedResult = 0;} 
+			
+			
+		}
+
+		Debug.Log("Result: " + evaluatedResult);
 
 
 

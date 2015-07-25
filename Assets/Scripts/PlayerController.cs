@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (selectedMove == null) {
 			selectedMove = new MoveSelection(move, Time.time);
-			Debug.Log ("selected : " + move);
+			//Debug.Log ("selected : " + move);
 
 			if(selectedMove.move == Move.ROCK){playercurrentmove.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
 			if(selectedMove.move == Move.PAPER){playercurrentmove.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}

@@ -21,6 +21,8 @@ public class InputController : MonoBehaviour {
 			player.selectMove (Move.PAPER);
 		} else if (Input.GetButton(scissorButton)) {
 			player.selectMove (Move.SCISSOR);
+		} else {
+			player.selectMove (Move.NONE);
 		}
 	}
 }
