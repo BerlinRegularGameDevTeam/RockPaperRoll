@@ -6,6 +6,8 @@ public class GameCotroller : MonoBehaviour {
 	public PlayerController player1;
 	public PlayerController player2;
 
+	public Transform theCamera;
+
 	public Sprite rockSprite;
 	public Sprite paperSprite;
 	public Sprite scissorSprite;
@@ -45,13 +47,13 @@ public class GameCotroller : MonoBehaviour {
 		if (move1.move != Move.NONE) {
 			float beatTime = Time.time - offset;
 			float timeDifferenz = move1.timing - beatTime;
-			Debug.Log ("Player 1: " + move1.move + " " + timeDifferenz);
+			//Debug.Log ("Player 1: " + move1.move + " " + timeDifferenz);
 			if(move1.move == Move.ROCK){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
 			if(move1.move == Move.PAPER){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
 			if(move1.move == Move.SCISSOR){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
 		} else {
 	
-			Debug.Log ("Player 1: skipped beat");
+			//Debug.Log ("Player 1: skipped beat");
 			player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=blankSprite;
 
 		}
@@ -62,7 +64,7 @@ public class GameCotroller : MonoBehaviour {
 		{ 
 			float beatTime = Time.time - offset;
 			float timeDifferenz = move2.timing - beatTime;
-			Debug.Log ("Player 2: " + move2.move + " " + timeDifferenz);
+			//Debug.Log ("Player 2: " + move2.move + " " + timeDifferenz);
 			if(move2.move == Move.ROCK){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
 			if(move2.move == Move.PAPER){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
 			if(move2.move == Move.SCISSOR){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;} 
@@ -70,7 +72,7 @@ public class GameCotroller : MonoBehaviour {
 
 			else 
 			{
-			Debug.Log ("Player 2: skipped beat");
+			//Debug.Log ("Player 2: skipped beat");
 			player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=blankSprite;
 				}
 
@@ -116,9 +118,18 @@ public class GameCotroller : MonoBehaviour {
 			
 		}
 
-		Debug.Log("Result: " + evaluatedResult);
+		//Debug.Log("Result: " + evaluatedResult);
 
+		Vector3 newCamPos = new Vector3(theCamera.position.x + evaluatedResult*20,theCamera.position.y,theCamera.position.z);
+		Vector3 newP1Pos = new Vector3(player1ingame.position.x + evaluatedResult*20,player1ingame.position.y,player1ingame.position.z);
+		Vector3 newP2Pos = new Vector3(player2ingame.position.x + evaluatedResult*20,player2ingame.position.y,player2ingame.position.z);
 
+		theCamera.position = newCamPos;
+		player1ingame.position = newP1Pos;
+		player2ingame.position = newP2Pos;
+
+		if(theCamera.position.x<=-100){Debug.Log("Player 2 wins!");}
+		if(theCamera.position.x>=100){Debug.Log("Player 1 wins!");}
 
 	}
 }
