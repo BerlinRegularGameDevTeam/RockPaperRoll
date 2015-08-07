@@ -8,10 +8,10 @@ public class GameCotroller : MonoBehaviour {
 
 	public Transform theCamera;
 
-	public Sprite rockSprite;
-	public Sprite paperSprite;
-	public Sprite scissorSprite;
-	public Sprite blankSprite;
+	//public Sprite rockSprite;
+	//public Sprite paperSprite;
+	//public Sprite scissorSprite;
+	//public Sprite blankSprite;
 
 	public Transform player1ingame;
 	public Transform player2ingame;
@@ -25,10 +25,11 @@ public class GameCotroller : MonoBehaviour {
 	// time after the sweetspot until
 	// ----------x------------|
 	//    beat ideal offset missed
-	public float offset = 0.1f;
+	public float offset = 0.5f;
 
 	// Use this for initialization
 	void Start () {
+
 		InvokeRepeating("pullMoves",beat + offset,beat);
 	}
 	
@@ -48,13 +49,13 @@ public class GameCotroller : MonoBehaviour {
 			float beatTime = Time.time - offset;
 			float timeDifferenz = move1.timing - beatTime;
 			//Debug.Log ("Player 1: " + move1.move + " " + timeDifferenz);
-			if(move1.move == Move.ROCK){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
-			if(move1.move == Move.PAPER){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
-			if(move1.move == Move.SCISSOR){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;}
+			if(move1.move == Move.ROCK){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player1.rockSprite;}
+			if(move1.move == Move.PAPER){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player1.paperSprite;}
+			if(move1.move == Move.SCISSOR){player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player1.scissorSprite;}
 		} else {
 	
 			//Debug.Log ("Player 1: skipped beat");
-			player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=blankSprite;
+			player1ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player1.blankSprite;
 
 		}
 
@@ -65,15 +66,15 @@ public class GameCotroller : MonoBehaviour {
 			float beatTime = Time.time - offset;
 			float timeDifferenz = move2.timing - beatTime;
 			//Debug.Log ("Player 2: " + move2.move + " " + timeDifferenz);
-			if(move2.move == Move.ROCK){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=rockSprite;}
-			if(move2.move == Move.PAPER){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=paperSprite;}
-			if(move2.move == Move.SCISSOR){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=scissorSprite;} 
+			if(move2.move == Move.ROCK){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player2.rockSprite;}
+			if(move2.move == Move.PAPER){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player2.paperSprite;}
+			if(move2.move == Move.SCISSOR){player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player2.scissorSprite;} 
 		}
 
 			else 
 			{
 			//Debug.Log ("Player 2: skipped beat");
-			player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=blankSprite;
+			player2ingame.gameObject.GetComponent<SpriteRenderer>().sprite=player2.blankSprite;
 				}
 
 

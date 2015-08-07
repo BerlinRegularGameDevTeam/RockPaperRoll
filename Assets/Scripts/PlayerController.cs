@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public Sprite rockSprite;
 	public Sprite paperSprite;
 	public Sprite scissorSprite;
+	public Sprite blankSprite;
 
 	private MoveSelection selectedMove;
 
